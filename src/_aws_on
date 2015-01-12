@@ -1,0 +1,15 @@
+#compdef aws_on
+
+_aws_on() {
+	typeset -A opt_args
+
+	_arguments \
+		'1: :($(_list_configs))'
+
+}
+
+_list_configs() {
+	for f in $(ls ~/.aws/aws_files | grep -v s3cfg); do
+		echo $f | sed 's/credential-file_//'
+	done
+}
